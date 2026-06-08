@@ -1,4 +1,4 @@
-# Welcome to Day 10: Multi-Agent System
+# Day 09 Multi Agents Architecture
 
 Mục tiêu của bạn là xây dựng một `shopping assistant` theo mô hình multi-agent bằng `LangGraph`, dùng LLM thật, RAG thật, và mock data local.
 
