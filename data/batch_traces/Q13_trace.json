@@ -1,0 +1,18 @@
+[
+  {
+    "agent": "RouterAgent",
+    "action": "Định tuyến câu hỏi. Kết quả phân tích: {'status': 'ok', 'needs_policy': True, 'needs_data': True, 'clarification_question': None}"
+  },
+  {
+    "agent": "PolicySpecialistAgent",
+    "action": "Đã tra cứu ChromaDB. Tìm thấy 4 dữ kiện chính sách."
+  },
+  {
+    "agent": "OrderSpecialistAgent",
+    "action": "Xử lý dữ liệu hệ thống. Hành động: Đã tra cứu chi tiết mã đơn hàng phẳng: 2058. Trạng thái kết quả: ok"
+  },
+  {
+    "agent": "ResponseAgent",
+    "action": "Đã biên soạn câu trả lời cuối cùng gửi khách hàng."
+  }
+]

@@ -1,0 +1,385 @@
+{
+  "metrics": {
+    "total": 22,
+    "route_accuracy": 0.7727272727272727,
+    "status_accuracy": 0.8636363636363636
+  },
+  "results": [
+    {
+      "id": "Q01",
+      "question": "Chính sách hoàn trả hàng ra sao?",
+      "expected": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q02",
+      "question": "Giao hàng tiêu chuẩn thường mất bao lâu?",
+      "expected": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q03",
+      "question": "Khách có được kiểm hàng khi nhận không?",
+      "expected": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q04",
+      "question": "Voucher có được hoàn lại khi hủy đơn không?",
+      "expected": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q05",
+      "question": "Các trường hợp nào thường không hỗ trợ trả hàng?",
+      "expected": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q06",
+      "question": "Đơn hàng 1971 bao giờ được giao?",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q07",
+      "question": "Cho tôi xem danh sách đơn hàng của khách hàng C001",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q08",
+      "question": "Voucher của khách hàng C001 còn những mã nào dùng được?",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q09",
+      "question": "Khách hàng C001 thuộc hạng gì và còn quota voucher bao nhiêu?",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q10",
+      "question": "Đơn hàng 2058 đang ở trạng thái nào?",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q11",
+      "question": "Đơn hàng 1971 có được hoàn trả không?",
+      "expected": {
+        "route": [
+          "data",
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": false
+    },
+    {
+      "id": "Q12",
+      "question": "Đơn hàng 2058 còn trong thời gian trả hàng không?",
+      "expected": {
+        "route": [
+          "data",
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": false
+    },
+    {
+      "id": "Q13",
+      "question": "Đơn hàng 2058 nếu khách đổi ý thì có thể trả trong bao lâu?",
+      "expected": {
+        "route": [
+          "data",
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy",
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q14",
+      "question": "Đơn hàng 1971 đang giao thì nên trả hàng hay từ chối nhận?",
+      "expected": {
+        "route": [
+          "data",
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": false
+    },
+    {
+      "id": "Q15",
+      "question": "Voucher của tôi còn dùng được không?",
+      "expected": {
+        "route": [],
+        "status": "clarification_needed"
+      },
+      "actual": {
+        "route": [],
+        "status": "clarification_needed"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q16",
+      "question": "Đơn hàng của tôi có được hoàn trả không?",
+      "expected": {
+        "route": [],
+        "status": "clarification_needed"
+      },
+      "actual": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "passed": false
+    },
+    {
+      "id": "Q17",
+      "question": "Kiểm tra đơn hàng 9999 giúp tôi",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "not_found"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": false
+    },
+    {
+      "id": "Q18",
+      "question": "Cho tôi xem voucher của khách hàng C999",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "not_found"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": false
+    },
+    {
+      "id": "Q19",
+      "question": "Customer C014 có những đơn nào gần đây?",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q20",
+      "question": "Phương thức giao nhanh có thể bị chuyển sang giao tiêu chuẩn khi nào?",
+      "expected": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    },
+    {
+      "id": "Q21",
+      "question": "Khách hàng C001 tối đa dùng bao nhiêu voucher mỗi tháng?",
+      "expected": {
+        "route": [
+          "data"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy",
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": false
+    },
+    {
+      "id": "Q22",
+      "question": "Đơn hàng 2058 có liên quan gì đến cửa sổ trả hàng 15 ngày trong policy không?",
+      "expected": {
+        "route": [
+          "data",
+          "policy"
+        ],
+        "status": "ok"
+      },
+      "actual": {
+        "route": [
+          "policy",
+          "data"
+        ],
+        "status": "ok"
+      },
+      "passed": true
+    }
+  ]
+}
