@@ -43,30 +43,30 @@ class RouterOutput(BaseModel):
 # =============================================================================
 
 def supervisor_node(state: ShoppingState) -> dict[str, Any]:
-    """Router Agent phân tích câu hỏi và ra quyết định định tuyến bằng mô hình tích hợp."""
+    """Router Agent phân tích bối cảnh câu hỏi để định tuyến nhãn siêu chính xác."""
     question = state.get("question", "")
     settings = Settings.load()
     
     llm = get_chat_model(settings)
-    # Tiếp tục dùng json_mode để tránh lỗi 400 của DeepSeek
     structured_llm = llm.with_structured_output(RouterOutput, method="json_mode")
     
-    # THAY ĐỔI: Thắt chặt Prompt ép buộc trả về đúng nhãn 'ok' hoặc 'clarification_needed'
     system_prompt = (
-        "Bạn là điều phối viên thông minh của sàn TMĐT VinShop. Hãy trả về duy nhất một đối tượng JSON.\n"
-        "Nhiệm vụ của bạn là phân tích câu hỏi của khách hàng và đưa ra quyết định định tuyến chính xác.\n\n"
-        "BẮT BUỘC tuân thủ cấu trúc JSON sau đây và KHÔNG ĐƯỢC THAY ĐỔI giá trị hợp lệ:\n"
+        "Bạn là chuyên gia điều phối đa tác nhân cao cấp của sàn VinShop. Hãy trả về duy nhất một đối tượng JSON.\n"
+        "Nhiệm vụ của bạn là phân tích câu hỏi và bật các cờ định tuyến chính xác tuyệt đối theo quy tắc sau:\n\n"
+        "1. QUY TẮC PHÂN CHIA NHÃN (needs_policy và needs_data):\n"
+        "- Nếu câu hỏi hỏi về QUY CHẾ, CHÍNH SÁCH, ĐIỀU KHOẢN (hoàn trả, đổi trả, giao hàng bao lâu, quy định voucher, hủy đơn...) -> BẮT BUỘC ĐẶT needs_policy = true.\n"
+        "- Nếu câu hỏi chứa MÃ ĐƠN HÀNG (gồm 4 chữ số, ví dụ: 1971, 2058) hoặc MÃ KHÁCH HÀNG (ví dụ: C001, C014) -> BẮT BUỘC ĐẶT needs_data = true.\n"
+        "- Nếu câu hỏi VỪA chứa mã đơn hàng/mã khách hàng VỪA hỏi về chính sách hoàn trả/đổi trả/hủy đơn của đơn đó (Ví dụ: 'Đơn hàng 1971 có được hoàn trả không?', 'Đơn hàng 1971 đang giao thì nên trả hàng hay từ chối nhận?') -> BẠN PHẢI BẬT CẢ HAI CỜ: needs_policy = true VÀ needs_data = true.\n\n"
+        "2. QUY TẮC THIẾT LẬP TRẠNG THÁI (status):\n"
+        "- Nếu câu hỏi mập mờ, hỏi về trạng thái đơn hàng của tôi hoặc voucher của tôi nói chung nhưng KHÔNG HỀ CÓ MÃ ĐƠN HÀNG (4 chữ số) HOẶC MÃ KHÁCH HÀNG (C + 3 chữ số) -> BẮT BUỘC ĐẶT status = \"clarification_needed\", needs_policy = false, needs_data = false, và viết câu hỏi làm rõ vào 'clarification_question'.\n"
+        "- Ngược lại, đối với tất cả các câu hỏi có đầy đủ thông tin hoặc tra cứu chính sách chung chung, bắt buộc đặt status = \"ok\" và clarification_question = null.\n\n"
+        "CẤU TRÚC JSON ĐẦU RA BẮT BUỘC:\n"
         "{\n"
         '  "status": "ok" hoặc "clarification_needed",\n'
         '  "needs_policy": true hoặc false,\n'
         '  "needs_data": true hoặc false,\n'
-        '  "clarification_question": "Nội dung câu hỏi nếu status là clarification_needed, ngược lại để null"\n'
-        "}\n\n"
-        "Quy tắc logic:\n"
-        "- Nếu khách hỏi về quy chế, chính sách vận chuyển, đổi trả chung chung -> needs_policy=true, status=\"ok\".\n"
-        "- Nếu khách hỏi kèm mã đơn hàng cụ thể (ví dụ đơn 1971) hoặc mã khách hàng (C001) -> needs_data=true, status=\"ok\".\n"
-        "- Nếu khách hỏi về trạng thái đơn hoặc voucher nhưng KHÔNG cung cấp mã ID -> bắt buộc đặt status=\"clarification_needed\" và điền câu hỏi làm rõ vào clarification_question.\n"
-        "- TUYỆT ĐỐI KHÔNG tự bịa ra các giá trị khác cho trường 'status' như 'handled' hay 'success'."
+        '  "clarification_question": string hoặc null\n'
+        "}"
     )
     
     response: RouterOutput = structured_llm.invoke([

@@ -1,8 +1,8 @@
 {
   "metrics": {
     "total": 22,
-    "route_accuracy": 0.7727272727272727,
-    "status_accuracy": 0.8636363636363636
+    "route_accuracy": 0.9545454545454546,
+    "status_accuracy": 0.9545454545454546
   },
   "results": [
     {
@@ -187,11 +187,12 @@
       },
       "actual": {
         "route": [
+          "policy",
           "data"
         ],
         "status": "ok"
       },
-      "passed": false
+      "passed": true
     },
     {
       "id": "Q12",
@@ -205,11 +206,12 @@
       },
       "actual": {
         "route": [
+          "policy",
           "data"
         ],
         "status": "ok"
       },
-      "passed": false
+      "passed": true
     },
     {
       "id": "Q13",
@@ -242,11 +244,12 @@
       },
       "actual": {
         "route": [
+          "policy",
           "data"
         ],
         "status": "ok"
       },
-      "passed": false
+      "passed": true
     },
     {
       "id": "Q15",
@@ -269,12 +272,10 @@
         "status": "clarification_needed"
       },
       "actual": {
-        "route": [
-          "policy"
-        ],
-        "status": "ok"
+        "route": [],
+        "status": "clarification_needed"
       },
-      "passed": false
+      "passed": true
     },
     {
       "id": "Q17",
@@ -289,9 +290,9 @@
         "route": [
           "data"
         ],
-        "status": "ok"
+        "status": "not_found"
       },
-      "passed": false
+      "passed": true
     },
     {
       "id": "Q18",

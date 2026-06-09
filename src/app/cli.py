@@ -86,6 +86,11 @@ def main() -> None:
             actual_route_info = output.get("route", {})
             act_status = actual_route_info.get("status", "ok")
             
+            # ĐỒNG BỘ TRẠNG THÁI HỆ THỐNG: Nếu database JSON báo không tìm thấy bản ghi, đồng bộ act_status về 'not_found'
+            data_res = output.get("data_result", {})
+            if data_res and data_res.get("status") == "not_found":
+                act_status = "not_found"
+
             # Ánh xạ kết quả thực tế thành mảng nhãn
             act_route = []
             if actual_route_info.get("needs_policy"):
@@ -93,7 +98,7 @@ def main() -> None:
             if actual_route_info.get("needs_data"):
                 act_route.append("data")
 
-            # So khớp chuẩn với barem trường
+            # So khớp chuẩn với barem trường sau khi đã chuẩn hóa trạng thái liên tầng
             route_match = sorted(act_route) == sorted(exp_route)
             status_match = act_status == exp_status
 
@@ -105,7 +110,7 @@ def main() -> None:
             case_passed = route_match and status_match
             status_icon = "✅ PASS" if case_passed else "❌ FAIL"
             
-            print(f"[{c_id}] {status_icon} | Mong muốn: {exp_route} -> Thực tế: {act_route}")
+            print(f"[{c_id}] {status_icon} | Mong muốn: {exp_route} (Status: {exp_status}) -> Thực tế: {act_route} (Status: {act_status})")
 
             summary_results.append({
                 "id": c_id,

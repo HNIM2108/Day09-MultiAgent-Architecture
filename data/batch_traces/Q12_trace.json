@@ -1,7 +1,11 @@
 [
   {
     "agent": "RouterAgent",
-    "action": "Định tuyến câu hỏi. Kết quả phân tích: {'status': 'ok', 'needs_policy': False, 'needs_data': True, 'clarification_question': None}"
+    "action": "Định tuyến câu hỏi. Kết quả phân tích: {'status': 'ok', 'needs_policy': True, 'needs_data': True, 'clarification_question': None}"
+  },
+  {
+    "agent": "PolicySpecialistAgent",
+    "action": "Đã tra cứu ChromaDB. Tìm thấy 4 dữ kiện chính sách."
   },
   {
     "agent": "OrderSpecialistAgent",
